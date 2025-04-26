@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+
 export const routes: Routes = [
 
     {title: "ADS | Home", path:'' , component: HeaderComponent},
