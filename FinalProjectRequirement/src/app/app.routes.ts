@@ -5,7 +5,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-
+import { FeedbackComponent } from './components/feedback/feedback.component';
 export const routes: Routes = [
 
     {title: "ADS | Home", path:'' , component: HeaderComponent},
@@ -13,5 +13,6 @@ export const routes: Routes = [
     {title: "ADS | About", path:'about' , component: AboutComponent},
     {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
     {title: "ADS | Not Found", path:'**' , component: NotfoundComponent},
+    {title: "ADS | Feedback", path:'feedback',component: FeedbackComponent}
 
 ];
