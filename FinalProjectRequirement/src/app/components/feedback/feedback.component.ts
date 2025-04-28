@@ -15,29 +15,47 @@ export class FeedBackComponent {
   email = '';
   message = '';
   selectedEmoji = ''; // New for emoji selection
+  feedbackRecords: any[] = []; // Store feedback records
 
+  // Modal control
   openModal() {
     this.isModalOpen = true;
     setTimeout(() => {
       this.closeModal();
-    }, 3000);
+    }, 3000); // Auto close the modal after 3 seconds
   }
 
   closeModal() {
     this.isModalOpen = false;
   }
 
+  // Submit feedback
   submitFeedback() {
-    console.log('Feedback submitted:');
-    console.log('Name:', this.name);
-    console.log('Email:', this.email);
-    console.log('Message:', this.message);
-    console.log('Selected Emoji:', this.selectedEmoji); // Also log emoji choice
+    if (this.name.trim() && this.email.trim() && this.message.trim()) {
+      // Get current date and time
+      const currentDateTime = new Date().toLocaleString();
 
-    this.openModal();
-    this.resetForm();
+      // Create feedback object
+      const feedback = {
+        name: this.name,
+        email: this.email,
+        message: this.message,
+        feeling: this.selectedEmoji || 'No feeling selected',  // Default message if no emoji selected
+        dateTime: currentDateTime, // Add the current date and time
+      };
+
+      // Add the feedback to the records
+      this.feedbackRecords.push(feedback);
+
+      // Open the success modal
+      this.openModal();
+
+      // Reset the form after submission
+      this.resetForm();
+    }
   }
 
+  // Reset form fields
   resetForm() {
     this.name = '';
     this.email = '';

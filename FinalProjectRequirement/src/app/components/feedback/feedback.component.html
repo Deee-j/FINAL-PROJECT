@@ -1,155 +1,131 @@
-<!-- Testimonials and Feedback Section -->
-<aside id="testimonials" data-enllax-ratio=".2" style="background-color: #f5f5f5; padding: 50px 0;">
+<!-- Modal -->
+<div 
+  *ngIf="isModalOpen" 
+  style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-align: center;"
+>
+  <h3 style="margin: 0 0 10px;">Thank You, {{ name }}!</h3>
+  <p>Your feedback has been submitted successfully.</p>
+  <button (click)="closeModal()" style="margin-top: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Close
+  </button>
+</div>
 
-  <!-- Modal -->
+<!-- Feedback Form Centered -->
+<div style="display: flex; justify-content: center; margin-bottom: 60px;">
+  <div class="feedback-card" style="width: 500px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <div class="card-header">
+      <h3>Feedback Form</h3>
+      <p>We value your feedback. Please share your thoughts with us!</p>
+    </div>
+
+    <div class="form-container">
+      <form (submit)="submitFeedback(); $event.preventDefault();">
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label for="name">Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            [(ngModel)]="name" 
+            name="name" 
+            placeholder="Enter your name"
+            required
+            style="width: 100%; padding: 8px; margin-top: 5px;"
+          />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label for="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+            style="width: 100%; padding: 8px; margin-top: 5px;"
+          />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label for="message">Message:</label>
+          <textarea 
+            id="message" 
+            [(ngModel)]="message" 
+            name="message" 
+            rows="4" 
+            placeholder="Share your feedback"
+            required
+            style="width: 100%; padding: 8px; margin-top: 5px;"
+          ></textarea>
+        </div>
+
+        <!-- Emoji Faces Section -->
+        <div class="form-group" style="margin-bottom: 20px; text-align: center;">
+          <label style="display: block; margin-bottom: 8px;">How do you feel?</label>
+          <div style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
+            <span 
+              (click)="selectEmoji('😊')" 
+              [style.opacity]="selectedEmoji === '😊' ? '1' : '0.5'" 
+              style="cursor: pointer;"
+            >
+              😊
+            </span>
+            <span 
+              (click)="selectEmoji('😐')" 
+              [style.opacity]="selectedEmoji === '😐' ? '1' : '0.5'" 
+              style="cursor: pointer;"
+            >
+              😐
+            </span>
+            <span 
+              (click)="selectEmoji('😞')" 
+              [style.opacity]="selectedEmoji === '😞' ? '1' : '0.5'" 
+              style="cursor: pointer;"
+            >
+              😞
+            </span>
+          </div>
+          <div *ngIf="selectedEmoji" style="margin-top: 10px; font-size: 18px;">
+            Selected: {{ selectedEmoji }}
+          </div>
+        </div>
+
+        <div class="form-actions" style="display: flex; justify-content: space-between;">
+          <!-- Reset Button -->
+          <button 
+            type="button" 
+            (click)="resetForm()" 
+            style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;"
+          >
+            Reset
+          </button>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            [disabled]="!name.trim() || !email.trim() || !message.trim()" 
+            style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Display Submitted Feedback Records -->
+<div *ngIf="feedbackRecords.length > 0" style="margin-top: 30px;">
+  <h3>Feedback Records:</h3>
   <div 
-    *ngIf="isModalOpen" 
-    style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-align: center;"
+    *ngFor="let record of feedbackRecords" 
+    style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;"
   >
-    <h3 style="margin: 0 0 10px;">Thank You!</h3>
-    <p>Your feedback has been submitted successfully.</p>
-    <button (click)="closeModal()" style="margin-top: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      Close
-    </button>
+    <p><strong>Name:</strong> {{ record.name }}</p>
+    <p><strong>Email:</strong> {{ record.email }}</p>
+    <p><strong>Message:</strong> {{ record.message }}</p>
+    <p><strong>Feeling:</strong> {{ record.feeling }}</p>
+    <p><strong>Submitted at:</strong> {{ record.dateTime }}</p>
   </div>
-
-  <!-- Feedback Form Centered -->
-  <div style="display: flex; justify-content: center; margin-bottom: 60px;">
-    <div class="feedback-card" style="width: 500px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      <div class="card-header">
-        <h3>Feedback Form</h3>
-        <p>We value your feedback. Please share your thoughts with us!</p>
-      </div>
-
-      <div class="form-container">
-        <form (submit)="submitFeedback(); $event.preventDefault();">
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="name">Name:</label>
-            <input 
-              type="text" 
-              id="name" 
-              [(ngModel)]="name" 
-              name="name" 
-              placeholder="Enter your name"
-              required
-              style="width: 100%; padding: 8px; margin-top: 5px;"
-            />
-            <p *ngIf="name">Name: {{ name }}!</p>
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="email">Email:</label>
-            <input 
-              type="email" 
-              id="email" 
-              [(ngModel)]="email" 
-              name="email" 
-              placeholder="Enter your email"
-              required
-              style="width: 100%; padding: 8px; margin-top: 5px;"
-            />
-            <p *ngIf="email">Your email is: {{ email }}</p>
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="message">Message:</label>
-            <textarea 
-              id="message" 
-              [(ngModel)]="message" 
-              name="message" 
-              rows="4" 
-              placeholder="Share your feedback"
-              required
-              style="width: 100%; padding: 8px; margin-top: 5px;"
-            ></textarea>
-          </div>
-
-          <!-- Emoji Faces Section -->
-          <div class="form-group" style="margin-bottom: 20px; text-align: center;">
-            <label style="display: block; margin-bottom: 8px;">How do you feel?</label>
-            <div style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
-              <span 
-                (click)="selectEmoji('😊')" 
-                [style.opacity]="selectedEmoji === '😊' ? '1' : '0.5'" 
-                style="cursor: pointer;"
-              >
-                😊
-              </span>
-              <span 
-                (click)="selectEmoji('😐')" 
-                [style.opacity]="selectedEmoji === '😐' ? '1' : '0.5'" 
-                style="cursor: pointer;"
-              >
-                😐
-              </span>
-              <span 
-                (click)="selectEmoji('😞')" 
-                [style.opacity]="selectedEmoji === '😞' ? '1' : '0.5'" 
-                style="cursor: pointer;"
-              >
-                😞
-              </span>
-            </div>
-            <div *ngIf="selectedEmoji" style="margin-top: 10px; font-size: 18px;">
-              Selected: {{ selectedEmoji }}
-            </div>
-          </div>
-          <!-- End Emoji Faces Section -->
-
-          <div class="form-actions" style="display: flex; justify-content: space-between;">
-            <!-- Reset Button -->
-            <button 
-              type="button" 
-              (click)="resetForm()" 
-              style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;"
-            >
-              Reset
-            </button>
-
-            <!-- Submit Button -->
-            <button 
-              type="submit" 
-              [disabled]="!name.trim() || !email.trim() || !message.trim()" 
-              style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Testimonials -->
-  <div class="row clearfix" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 20px;">
-    <div class="section-heading" style="width: 100%; margin-bottom: 30px;">
-      <h3>FEEDBACK</h3>
-      <h2 class="section-title text-center">What our customers are saying</h2>
-    </div>
-
-    <!-- User Testimonial 1 -->
-    <blockquote class="col-3 testimonial classic" style="flex: 0 0 30%; max-width: 30%;">
-      <img src="../assets/images/user-images/user-1.jpg" alt="User" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"/>
-      <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</q>
-      <footer>John Doe - Happy Customer</footer>
-    </blockquote>
-
-    <!-- User Testimonial 2 -->
-    <blockquote class="col-3 testimonial classic" style="flex: 0 0 30%; max-width: 30%;">
-      <img src="../assets/images/user-images/user-2.jpg" alt="User" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"/>
-      <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</q>
-      <footer>Roslyn Doe - Happy Customer</footer>
-    </blockquote>
-
-    <!-- User Testimonial 3 -->
-    <blockquote class="col-3 testimonial classic" style="flex: 0 0 30%; max-width: 30%;">
-      <img src="../assets/images/user-images/user-3.jpg" alt="User" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"/>
-      <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</q>
-      <footer>Thomas Doe - Happy Customer</footer>
-    </blockquote>
-
-  </div>
-  <!-- End of Testimonials -->
-
-</aside>
-<!-- End of Testimonials and Feedback Section -->
+</div>
