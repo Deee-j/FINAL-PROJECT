@@ -1,3 +1,62 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<div class="feedback-card">
+    <div class="card-header">
+      <h3>Feedback Form</h3>
+      <p>We value your feedback. Please share your thoughts with us!</p>
+    </div>
+  
+    <div class="form-container">
+      <form (submit)="submitFeedback(); $event.preventDefault();">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            [(ngModel)]="name" 
+            name="name" 
+            placeholder="Enter your name"
+            required
+          />
+          <p *ngIf="name">Hello, {{ name }}!</p>  <!-- Interpolation for name -->
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+          />
+          <p *ngIf="email">Your email is: {{ email }}</p> <!-- Interpolation for email -->
+        </div>
+  
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea 
+            id="message" 
+            [(ngModel)]="message" 
+            name="message" 
+            rows="4" 
+            placeholder="Share your feedback" 
+            required
+          ></textarea>
+        </div>
+  
+        <div class="form-actions">
+          <button type="submit" [disabled]="!name.trim() || !email.trim() || !message.trim()">Submit</button>
+          <button type="button" (click)="resetForm()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+=======
+>>>>>>> 6a2d8cc882936fb46b2faa8716dba6b5f09c74b8
 <!--Testimonials-->
 <aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2">
 
@@ -41,4 +100,9 @@
     </div>
 
 </aside>
+<<<<<<< HEAD
 <!--End of Testimonials-->
+=======
+<!--End of Testimonials-->
+>>>>>>> Jimenez_branch
+>>>>>>> 6a2d8cc882936fb46b2faa8716dba6b5f09c74b8
