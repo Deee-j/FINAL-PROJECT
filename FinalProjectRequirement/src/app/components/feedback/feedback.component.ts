@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';  // Import CommonModule
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.css']
 })
-export class FeedbackComponent {
+export class FeedBackComponent {
 
   isModalOpen = false;
   name = '';
