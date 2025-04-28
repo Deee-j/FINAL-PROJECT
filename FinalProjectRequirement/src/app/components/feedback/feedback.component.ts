@@ -10,14 +10,17 @@ import { CommonModule } from '@angular/common';  // Import CommonModule
   styleUrls: ['./feedback.component.css']
 })
 export class FeedBackComponent {
-
   isModalOpen = false;
   name = '';
   email = '';
   message = '';
+  selectedEmoji = ''; // New for emoji selection
 
   openModal() {
     this.isModalOpen = true;
+    setTimeout(() => {
+      this.closeModal();
+    }, 3000);
   }
 
   closeModal() {
@@ -29,18 +32,21 @@ export class FeedBackComponent {
     console.log('Name:', this.name);
     console.log('Email:', this.email);
     console.log('Message:', this.message);
+    console.log('Selected Emoji:', this.selectedEmoji); // Also log emoji choice
 
-    // After submit, you can reset form and close
-    this.name = '';
-    this.email = '';
-    this.message = '';
-    this.closeModal();
+    this.openModal();
+    this.resetForm();
   }
 
-  // Reset form fields
   resetForm() {
     this.name = '';
     this.email = '';
     this.message = '';
+    this.selectedEmoji = '';
+  }
+
+  // When emoji is selected
+  selectEmoji(emoji: string) {
+    this.selectedEmoji = emoji;
   }
 }
