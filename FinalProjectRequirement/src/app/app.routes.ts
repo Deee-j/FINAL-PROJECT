@@ -6,12 +6,22 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FeedBackComponent } from './components/feedback/feedback.component';
-
+import { PolicyComponent } from './components/footer/policy/policy.component';
 export const routes: Routes = [
+    { title: "ADS | Policies", path: 'policy', component: PolicyComponent },
     {title: "ADS | Home", path:'' , component: HeaderComponent},
     {title: "ADS | Home", path:'home' , component: HeaderComponent},
     {title: "ADS | About", path:'about' , component: AboutComponent},
     {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
     {title: "ADS | Feedback", path:'feedback', component:FeedBackComponent},
-    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
+    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent},
+
+    {
+        path: 'footer',
+        component: FooterComponent,
+        children: [
+          { path: 'policy', component: PolicyComponent }
+        ]
+      },
+    
 ];
