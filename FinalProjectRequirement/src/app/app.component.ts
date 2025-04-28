@@ -14,24 +14,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-<<<<<<< HEAD
-  imports: [
-    CommonModule, 
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive,
-    NavComponent,
-    AboutComponent,
-    FeedbackComponent,
-    FooterComponent,
-    GalleryComponent,
-    HeaderComponent,
-    NotfoundComponent,
-    FormsModule
-  ],
-=======
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive,NavComponent,AboutComponent,FeedBackComponent,FooterComponent,GalleryComponent,HeaderComponent,NotfoundComponent],
->>>>>>> Jimenez_branch
+  imports: [RouterLink,RouterLinkActive,RouterOutlet,NavComponent,AboutComponent,FeedBackComponent,FooterComponent,GalleryComponent,HeaderComponent,NotfoundComponent,FormsModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
