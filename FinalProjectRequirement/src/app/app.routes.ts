@@ -13,7 +13,8 @@ export const routes: Routes = [
     {title: "ADS | Home", path:'home' , component: HeaderComponent},
     {title: "ADS | About", path:'about' , component: AboutComponent},
     {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
-    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent},
-    {title: "ADS | Feedback", path:'feedback',component: FeedBackComponent}
+    {title: "ADS | Feedback", path:'feedback',component: FeedBackComponent},
+    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
+  
 
 ];
