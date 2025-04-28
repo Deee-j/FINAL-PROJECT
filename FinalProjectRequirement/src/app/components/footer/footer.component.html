@@ -1,37 +1,40 @@
 <footer id="landing-footer" class="clearfix">
-    <div class="row clearfix">
-  
-      <div id="footer-logo-text" class="col-2" style="display: flex; align-items: center; gap: 10px;">
-        <img src="favicon.ico" alt="EduKonek Logo" style="height: 40px;">
-        <p id="copyright">EduKonek, 2025</p>
-      </div>
-  
-      <ul class="col-2 social-icons">
+  <div class="row clearfix" style="display: flex; justify-content: space-between;">
+
+
+    <div id="footer-logo-text" class="col-2" style="display: flex; align-items: center; gap: 10px;">
+      <img src="favicon.ico" alt="EduKonek Logo" style="height: 40px;">
+      <p id="copyright">EduKonek, 2025</p>
+    </div>
+
+
+    <div class="col-2" style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+      <ul class="social-icons" style="list-style: none; padding: 0; margin: 0; text-align: right;">
         <li><p>Join Us:</p></li>
-  
         <li>
           <a target="_blank" title="Facebook" href="https://www.facebook.com">
-            <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+            <i class="fa fa-facebook fa-1x"></i><span> Facebook</span>
           </a>
         </li>
-  
         <li>
           <a target="_blank" title="Twitter" href="https://www.twitter.com">
-            <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+            <i class="fa fa-twitter fa-1x"></i><span> Twitter</span>
           </a>
         </li>
-  
         <li>
           <a target="_blank" title="Instagram" href="https://www.instagram.com">
-            <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+            <i class="fa fa-instagram fa-1x"></i><span> Instagram</span>
           </a>
         </li>
       </ul>
 
-      <div class="policies-link d-flex gap-3">
+   
+      <div class="policies-link">
         <a routerLink="/policy" routerLinkActive="active" class="text-decoration-underline text-white">Privacy Policy</a>
+        <a> | </a>
+        <a routerLink="feedback" routerLinkActive="active" class="text-decoration-underline text-white">Feedback</a>
       </div>
-
     </div>
-  </footer>
-  
+
+  </div>
+</footer>
