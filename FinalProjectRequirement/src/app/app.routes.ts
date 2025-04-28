@@ -7,11 +7,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FeedBackComponent } from './components/feedback/feedback.component';
 
+
 export const routes: Routes = [
     {title: "ADS | Home", path:'' , component: HeaderComponent},
     {title: "ADS | Home", path:'home' , component: HeaderComponent},
     {title: "ADS | About", path:'about' , component: AboutComponent},
     {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
-    {title: "ADS | Feedback", path:'feedback', component:FeedBackComponent},
+    {title: "ADS | Feedback", path:'feedback',component: FeedBackComponent},
     {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
+  
+
 ];
