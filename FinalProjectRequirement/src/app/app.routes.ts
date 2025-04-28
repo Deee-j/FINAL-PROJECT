@@ -5,27 +5,13 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-<<<<<<< HEAD
-import { FeedbackComponent } from './components/feedback/feedback.component';
-=======
 import { FeedBackComponent } from './components/feedback/feedback.component';
 
->>>>>>> Jimenez_branch
-
 export const routes: Routes = [
-
     {title: "ADS | Home", path:'' , component: HeaderComponent},
     {title: "ADS | Home", path:'home' , component: HeaderComponent},
     {title: "ADS | About", path:'about' , component: AboutComponent},
     {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
-<<<<<<< HEAD
-    {title: "ADS | Feedback", path:'feedback', component:FeedbackComponent},
+    {title: "ADS | Feedback", path:'feedback', component:FeedBackComponent},
     {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
-    
-=======
-    {title: "ADS | FeedBack", path:'feedback' , component: FeedBackComponent},
-    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
-    
-
->>>>>>> Jimenez_branch
 ];
