@@ -7,7 +7,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { UsersComponent } from './components/admin/users/users.component';
-
+import { AdminGuard } from './components/admin/admin.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect root to 'home'
   { title: 'ADS | Home', path: 'home', component: HeaderComponent },
@@ -16,8 +16,7 @@ export const routes: Routes = [
   { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
 
   {
-    path: 'admin',
-    component: AdminComponent,
+    title: 'ADS |Admin', path: 'admin', canActivate: [AdminGuard], component: AdminComponent, 
     children: [
       { title: 'Admin | Dashboard', path: 'dashboard', component: DashboardComponent },
       { title: 'Admin | Manage Users', path: 'users', component: UsersComponent },
