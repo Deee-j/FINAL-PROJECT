@@ -1,11 +1,13 @@
 <!-- Modal -->
 <div 
   *ngIf="isModalOpen" 
-  style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-align: center;"
+  style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-align: center;"
 >
   <h3 style="margin: 0 0 10px;">Thank You, {{ name }}!</h3>
   <p>Your feedback has been submitted successfully.</p>
-  <button (click)="closeModal()" style="margin-top: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+  <button 
+    (click)="closeModal()" 
+    style="margin-top: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
     Close
   </button>
 </div>
@@ -19,7 +21,13 @@
     </div>
 
     <div class="form-container">
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" style="color: red; margin-bottom: 15px; text-align: center;">
+        {{ errorMessage }}
+      </div>
+
       <form (submit)="submitFeedback(); $event.preventDefault();">
+        <!-- Name -->
         <div class="form-group" style="margin-bottom: 15px;">
           <label for="name">Name:</label>
           <input 
@@ -33,6 +41,7 @@
           />
         </div>
 
+        <!-- Email -->
         <div class="form-group" style="margin-bottom: 15px;">
           <label for="email">Email:</label>
           <input 
@@ -46,6 +55,7 @@
           />
         </div>
 
+        <!-- Message -->
         <div class="form-group" style="margin-bottom: 15px;">
           <label for="message">Message:</label>
           <textarea 
@@ -59,29 +69,26 @@
           ></textarea>
         </div>
 
-        <!-- Emoji Faces Section -->
+        <!-- Emoji Selector -->
         <div class="form-group" style="margin-bottom: 20px; text-align: center;">
           <label style="display: block; margin-bottom: 8px;">How do you feel?</label>
           <div style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
             <span 
               (click)="selectEmoji('😊')" 
               [style.opacity]="selectedEmoji === '😊' ? '1' : '0.5'" 
-              style="cursor: pointer;"
-            >
+              style="cursor: pointer;">
               😊
             </span>
             <span 
               (click)="selectEmoji('😐')" 
               [style.opacity]="selectedEmoji === '😐' ? '1' : '0.5'" 
-              style="cursor: pointer;"
-            >
+              style="cursor: pointer;">
               😐
             </span>
             <span 
               (click)="selectEmoji('😞')" 
               [style.opacity]="selectedEmoji === '😞' ? '1' : '0.5'" 
-              style="cursor: pointer;"
-            >
+              style="cursor: pointer;">
               😞
             </span>
           </div>
@@ -90,22 +97,20 @@
           </div>
         </div>
 
+        <!-- Form Actions -->
         <div class="form-actions" style="display: flex; justify-content: space-between;">
-          <!-- Reset Button -->
+          <!-- Reset -->
           <button 
             type="button" 
             (click)="resetForm()" 
-            style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;"
-          >
+            style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
             Reset
           </button>
 
-          <!-- Submit Button -->
+          <!-- Submit -->
           <button 
             type="submit" 
-            [disabled]="!name.trim() || !email.trim() || !message.trim()" 
-            style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
-          >
+            style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
             Submit
           </button>
         </div>
@@ -114,14 +119,12 @@
   </div>
 </div>
 
-
-<!-- Display Submitted Feedback Records -->
+<!-- Submitted Feedback -->
 <div *ngIf="feedbackRecords.length > 0" style="margin-top: 30px;">
   <h3>Feedback Records:</h3>
   <div 
     *ngFor="let record of feedbackRecords" 
-    style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;"
-  >
+    style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; padding: 10px;">
     <p><strong>Name:</strong> {{ record.name }}</p>
     <p><strong>Email:</strong> {{ record.email }}</p>
     <p><strong>Message:</strong> {{ record.message }}</p>
