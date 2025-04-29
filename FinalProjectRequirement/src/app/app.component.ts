@@ -10,11 +10,11 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FormsModule } from '@angular/forms';
-
+import { AdminComponent } from './components/admin/admin.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive,RouterOutlet,NavComponent,AboutComponent,FeedBackComponent,FooterComponent,GalleryComponent,HeaderComponent,NotfoundComponent,FormsModule,CommonModule],
+  imports: [RouterLink,RouterLinkActive,RouterOutlet,NavComponent,AboutComponent,FeedBackComponent,FooterComponent,GalleryComponent,HeaderComponent,NotfoundComponent,FormsModule,CommonModule,AdminComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

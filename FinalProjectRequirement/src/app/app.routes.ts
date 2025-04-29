@@ -2,19 +2,27 @@ import { Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
-import { NavComponent } from './components/nav/nav.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FeedBackComponent } from './components/feedback/feedback.component';
-
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 export const routes: Routes = [
-    {title: "ADS | Home", path:'' , component: HeaderComponent},
-    {title: "ADS | Home", path:'home' , component: HeaderComponent},
-    {title: "ADS | About", path:'about' , component: AboutComponent},
-    {title: "ADS | Gallery", path:'gallery' , component: GalleryComponent},
-    {title: "ADS | Feedback", path:'feedback',component: FeedBackComponent},
-    {title: "ADS | Not Found", path:'**' , component: NotfoundComponent}
-  
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect root to 'home'
+  { title: 'ADS | Home', path: 'home', component: HeaderComponent },
+  { title: 'ADS | About', path: 'about', component: AboutComponent },
+  { title: 'ADS | Gallery', path: 'gallery', component: GalleryComponent },
+  { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
 
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      { title: 'Admin | Dashboard', path: 'dashboard', component: DashboardComponent },
+      { title: 'Admin | Manage Users', path: 'users', component: UsersComponent },
+    ],
+  },
+
+  { title: 'ADS | Not Found', path: '**', component: NotfoundComponent },
 ];
