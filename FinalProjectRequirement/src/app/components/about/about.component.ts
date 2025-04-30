@@ -9,10 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-  sdg = {
-    title: 'SDG 4',
-    description: 'Quality Education'
-  };
+
 
   missionText = [
     {
@@ -27,6 +24,13 @@ export class AboutComponent {
     {
       text: `Importantly, LearnTube PH is and will always be completely free and accessible to everyone. By removing financial barriers, we aim to empower students across the Philippines to pursue their educational dreams. Our platform serves as a gateway to knowledge, growth, and future success, creating a positive ripple effect that extends beyond the individual to the wider community.`
     }
+  ];
+
+  vissionText = [
+    {
+      text: `To ensure inclusive and equitable quality education and promote lifelong learning opportunities for all, empowering individuals with the knowledge and skills necessary for personal growth, social well-being, and sustainable development.`
+    },
+    
   ];
 
   teamMembers = [
