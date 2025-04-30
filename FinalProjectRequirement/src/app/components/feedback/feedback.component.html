@@ -39,8 +39,11 @@
             required
             style="width: 100%; padding: 8px; margin-top: 5px;"
           />
-        </div>
 
+        <div *ngIf="name" style="margin-top: 10px; color: #555;">
+          Your Name: <strong>{{ name }}</strong>
+        </div>
+      </div>
         <!-- Email -->
         <div class="form-group" style="margin-bottom: 15px;">
           <label for="email">Email:</label>
@@ -53,6 +56,9 @@
             required
             style="width: 100%; padding: 8px; margin-top: 5px;"
           />
+        </div>
+        <div *ngIf="email" style="margin-top: 10px; color: #555;">
+          Your Email: <strong>{{ email }}</strong>
         </div>
 
         <!-- Message -->
