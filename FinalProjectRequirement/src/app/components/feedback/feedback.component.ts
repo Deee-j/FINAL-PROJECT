@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Import FormsModule
-import { CommonModule } from '@angular/common';  // Import CommonModule
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-feedback',
   standalone: true,
-  imports: [FormsModule, CommonModule],  // Add CommonModule here
+  imports: [FormsModule, CommonModule],
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.css']
 })
@@ -14,13 +14,15 @@ export class FeedBackComponent {
   name = '';
   email = '';
   message = '';
-  selectedEmoji = ''; // New for emoji selection
+  selectedEmoji = '';
+  errorMessage = '';  // 🔴 Error message for incomplete input
+  feedbackRecords: any[] = [];
 
   openModal() {
     this.isModalOpen = true;
     setTimeout(() => {
       this.closeModal();
-    }, 3000);
+    }, 3000); // Auto-close modal after 3 seconds
   }
 
   closeModal() {
@@ -28,11 +30,25 @@ export class FeedBackComponent {
   }
 
   submitFeedback() {
-    console.log('Feedback submitted:');
-    console.log('Name:', this.name);
-    console.log('Email:', this.email);
-    console.log('Message:', this.message);
-    console.log('Selected Emoji:', this.selectedEmoji); // Also log emoji choice
+    // 🔎 Check if any field is incomplete
+    if (!this.name.trim() || !this.email.trim() || !this.message.trim() || !this.selectedEmoji) {
+      this.errorMessage = '⚠️ Please complete all fields including how you feel.';
+      return;
+    }
+
+    this.errorMessage = '';  // ✅ Clear error if everything is valid
+
+    const currentDateTime = new Date().toLocaleString();
+
+    const feedback = {
+      name: this.name,
+      email: this.email,
+      message: this.message,
+      feeling: this.selectedEmoji,
+      dateTime: currentDateTime,
+    };
+
+    this.feedbackRecords.unshift(feedback);
 
     this.openModal();
     this.resetForm();
@@ -43,9 +59,9 @@ export class FeedBackComponent {
     this.email = '';
     this.message = '';
     this.selectedEmoji = '';
+    this.errorMessage = '';  // Clear error on reset
   }
 
-  // When emoji is selected
   selectEmoji(emoji: string) {
     this.selectedEmoji = emoji;
   }
