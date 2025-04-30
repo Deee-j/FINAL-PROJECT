@@ -1,5 +1,17 @@
-<div style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0 auto; max-width: 900px; padding: 20px;">
-  <section>
+<div style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0 auto; max-width: 900px; padding: 20px; position: relative;">
+
+  <div style="position: fixed; top: 20%; left: 0; background-color: #f8f9fa; border-radius: 5px; padding: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+    <ul style="list-style-type: none; padding: 0; margin: 0;">
+      <li><a routerLink="/policy" fragment="privacyNotice" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Privacy Notice</a></li>
+      <li><a routerLink="/policy" fragment="sgBulletin" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Secretary-General’s Bulletin</a></li>
+      <li><a routerLink="/policy" fragment="whatInfoCollect" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Information Collection</a></li>
+      <li><a routerLink="/policy" fragment="infoUsage" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Usage of Information</a></li>
+      <li><a routerLink="/policy" fragment="otherInfo" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Other Important Info</a></li>
+      <li><a routerLink="/policy" fragment="contactInfo" style="display: block; padding: 10px 20px; color: #007bff; text-decoration: none; font-size: 1.1em;">Contact & Further Info</a></li>
+    </ul>
+  </div>
+
+  <section id="privacyNotice">
     <h1></h1>
     <h2 style="font-size: 2em; color: #333;">Privacy Notice</h2>
     <h3 style="font-size: 1.5em; color: #007bff;">EduKonek Data Protection and Privacy Notice</h3>
@@ -11,7 +23,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="sgBulletin">
     <h4 style="font-size: 1.3em; color: #28a745;">Secretary-General’s Bulletin</h4>
     <p style="text-align: left; color: #555;">
       EduKonek websites are governed by principles outlined in the <strong>Secretary-General’s Bulletin</strong> on personal data protection and privacy,
@@ -19,7 +31,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="whatInfoCollect">
     <h3 style="font-size: 1.5em; color: #007bff;">What Information Does the EduKonek Collect?</h3>
     <p style="text-align: left; color: #555;">
       In general, you can browse an EduKonek website without disclosing any personal information about yourself.
@@ -42,7 +54,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="infoUsage">
     <h3 style="font-size: 1.5em; color: #007bff;">What Does the EduKonek Do with the Information It Collects?</h3>
     <p style="text-align: left; color: #555;">
       Information from cookies and web beacons is used to analyze trends and improve site content.
@@ -57,7 +69,7 @@
     </ul>
   </section>
 
-  <section>
+  <section id="otherInfo">
     <h3 style="font-size: 1.5em; color: #007bff;">Other Important Information</h3>
 
     <div style="margin-bottom: 20px;">
@@ -82,7 +94,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="contactInfo">
     <h3 style="font-size: 1.5em; color: #007bff;">Contact & Further Information</h3>
     <p style="text-align: left; color: #555;">
       You can request modifications or deletion of your data through the provided web forms or via the <strong>Feedback</strong>.
@@ -94,24 +106,4 @@
       <em>Privileges and immunities of the EduKonek are not waived by this notice.</em>
     </p>
   </section>
-
-  <button onclick="scrollToTop()" id="backToTopBtn" style="font-size: 1.5em; padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; position: fixed; bottom: 30px; right: 30px; border-radius: 50%; display: none;">
-    ↑
-  </button>
-
-  <script>
-    const backToTopBtn = document.getElementById("backToTopBtn");
-
-    window.onscroll = function () {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTopBtn.style.display = "block";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
-    };
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
 </div>
