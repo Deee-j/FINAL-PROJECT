@@ -1,15 +1,40 @@
 import { Component } from '@angular/core';
 import { SearchComponent } from '../search/search.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [SearchComponent,CommonModule],
+  imports: [SearchComponent, CommonModule, FormsModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
 })
 export class GalleryComponent {
+  constructor(private sanitizer: DomSanitizer) {
+    this.videos = this.rawVideos.map(video => ({
+      ...video,
+      embedUrl: this.getEmbedUrl(video.src)
+    }));
+  }
+
+  searchQuery = '';
+
+  get filteredImages() {
+    return this.images.filter(img =>
+      img.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      img.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
+  get filteredVideos() {
+    return this.videos.filter(video =>
+      video.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      video.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
   images = [
     {
       title: 'Classroom Learning',
@@ -85,12 +110,12 @@ export class GalleryComponent {
     }
   ];
 
-  videos = [
+  rawVideos = [
     {
       title: 'The Importance of Quality Education',
       description: 'This video explores the role of quality education in shaping a better future for communities worldwide.',
-      src: 'https://youtu.be/LIExX9St4oA?si=u9Xdpfkbj2fG4Z-b',
-      link: 'https://youtu.be/LIExX9St4oA?si=u9Xdpfkbj2fG4Z-b'
+      src: 'https://youtu.be/LIExX9St4oA',
+      link: 'https://youtu.be/LIExX9St4oA'
     },
     {
       title: 'Digital Learning in the 21st Century',
@@ -123,4 +148,20 @@ export class GalleryComponent {
       link: 'https://youtu.be/Gz0ERWClvz0'
     }
   ];
+
+  videos: {
+    title: string;
+    description: string;
+    link: string;
+    embedUrl: SafeResourceUrl;
+  }[] = [];
+
+  getEmbedUrl(youtubeUrl: string): SafeResourceUrl {
+    const videoId = youtubeUrl.includes('youtu.be/')
+      ? youtubeUrl.split('youtu.be/')[1]
+      : youtubeUrl.split('v=')[1];
+    const cleanVideoId = videoId.includes('&') ? videoId.split('&')[0] : videoId;
+    const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+  }
 }
