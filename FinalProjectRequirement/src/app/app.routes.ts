@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { UsersComponent } from './components/admin/users/users.component';
 import { AdminGuard } from './components/admin/admin.guard';
 import { PolicyComponent } from './components/footer/policy/policy.component';
+import { CopyrightComponent } from './components/footer/copyright/copyright.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect root to 'home'
   { title: 'ADS | Home', path: 'home', component: HeaderComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { title: 'ADS | Gallery', path: 'gallery', component: GalleryComponent },
   { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
   { title: 'ADS | Policy', path: 'policy', component: PolicyComponent },
+  { title: 'ADS | Copyright', path: 'copyright', component: CopyrightComponent },
 
   {
     title: 'ADS |Admin', path: 'admin', canActivate: [AdminGuard], component: AdminComponent, 
