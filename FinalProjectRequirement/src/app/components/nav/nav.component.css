@@ -1,0 +1,7 @@
+#header {
+    background-color: red;
+}
+
+#nav-main ul li a {
+    color: white;  /* Optional: changes the text color to white for contrast */
+}
