@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
-
   constructor(){}
 
   ngOnInit(): void{
