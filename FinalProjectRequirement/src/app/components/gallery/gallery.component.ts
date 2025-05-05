@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SearchComponent } from '../search/search.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -7,7 +6,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [SearchComponent, CommonModule, FormsModule],
+  imports: [ CommonModule, FormsModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
 })

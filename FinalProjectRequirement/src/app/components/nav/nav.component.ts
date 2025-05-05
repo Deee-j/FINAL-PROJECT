@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { SearchComponent } from '../search/search.component';
 import { AuthService } from '../../authservice';  // Make sure the correct path to your AuthService
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive,RouterOutlet,SearchComponent],
+  imports: [RouterLink,RouterLinkActive,RouterOutlet],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']  // Fixed typo: use styleUrls, not styleUrl
 })
