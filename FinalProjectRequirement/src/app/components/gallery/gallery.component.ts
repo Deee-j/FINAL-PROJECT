@@ -163,4 +163,29 @@ export class GalleryComponent {
     const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
+
+  caseStudies = [
+    {
+      title: 'Transforming Rural Education',
+      description: 'This case study explores how a mobile education initiative brought learning to remote communities.',
+      link: 'https://www.academia.edu/37086009/Transforming_Education_in_Rural_Philippines_A_Case_Study_Analysis_Presented_to#:~:text=A%20technology%20solution%20designed%20for%20rural%20infrastructure%20has,support%20from%20principal%20and%20parents%20in%20the%20community.'
+    },
+    {
+      title: 'Digital Inclusion for Girls',
+      description: 'A program focused on increasing digital literacy among girls in underprivileged areas.',
+      link: 'https://www.worldbenchmarkingalliance.org/impact/the-role-of-benchmarking-in-improving-the-inclusion-of-women-and-girls-in-tech/'
+    },
+    {
+      title: 'Global Case Studies in Womens Leadership',
+      description: 'This case study highlights the success of mentorship programs in developing young educational leaders.',
+      link: 'https://www.researchgate.net/publication/387663251_Global_Case_Studies_in_Women%27s_Leadership_Lessons_from_Successful_Mentorship_Programs'
+    }
+  ];
+  
+  get filteredCaseStudies() {
+    return this.caseStudies.filter(cs =>
+      cs.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      cs.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
 }
