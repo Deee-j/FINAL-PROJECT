@@ -1,3 +1,15 @@
+<!-- Search Bar -->
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    class="form-control"
+    placeholder="Search for images or videos..."
+    [ngClass]="{ 'highlight': searchQuery.length > 0 }"
+  />
+</div>
+
+
 <section class="text-center my-4">
   <h1></h1>
   <h1></h1>
@@ -5,10 +17,7 @@
   <p class="lead">Explore different aspects of Quality Education through these images that highlight classroom learning, teacher mentorship, digital access, and more!</p>
 </section>
 
-<!-- Search Bar -->
-<div class="container my-4">
-  <input type="text" [(ngModel)]="searchQuery" class="form-control" placeholder="Search for images or videos..." />
-</div>
+
 
 <!-- Image Gallery -->
 <div class="container">
@@ -46,6 +55,26 @@
         <div class="card-body">
           <h5 class="card-title">{{ video.title }}</h5>
           <p class="card-text">{{ video.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Case Studies Section -->
+<section class="text-center my-4">
+  <h2>Case Studies</h2>
+  <p class="lead">Discover real-world examples of how quality education initiatives are making a difference.</p>
+</section>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div *ngFor="let cs of filteredCaseStudies" class="col-lg-6 col-md-8 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ cs.title }}</h5>
+          <p class="card-text">{{ cs.description }}</p>
+          <a [href]="cs.link" target="_blank" class="btn btn-primary">Read More</a>
         </div>
       </div>
     </div>
