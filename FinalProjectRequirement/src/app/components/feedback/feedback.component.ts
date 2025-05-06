@@ -110,5 +110,7 @@ cancelEdit() {
 
 deleteFeedback(index: number) {
   this.feedbackRecords.splice(index, 1);
+  localStorage.setItem('feedbackRecords', JSON.stringify(this.feedbackRecords));
 }
+
 }
