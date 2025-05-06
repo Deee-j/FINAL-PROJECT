@@ -125,16 +125,20 @@
   </div>
 </div>
 
-<!-- Submitted Feedback -->
 <div *ngIf="feedbackRecords.length > 0" style="margin-top: 30px;">
   <h3>Feedback Records:</h3>
   <div 
-    *ngFor="let record of feedbackRecords" 
-    style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; padding: 10px;">
+    *ngFor="let record of feedbackRecords; let i = index" 
+    class="feedback-record"
+  >
     <p><strong>Name:</strong> {{ record.name }}</p>
     <p><strong>Email:</strong> {{ record.email }}</p>
     <p><strong>Message:</strong> {{ record.message }}</p>
     <p><strong>Feeling:</strong> {{ record.feeling }}</p>
     <p><strong>Submitted at:</strong> {{ record.dateTime }}</p>
+
+    <!-- Action Buttons per record -->
+    <button (click)="editFeedback(record, i)">Edit</button>
+    <button (click)="deleteFeedback(i)">Delete</button>
   </div>
 </div>
