@@ -16,7 +16,6 @@ export const routes: Routes = [
   { title: 'ADS | Gallery', path: 'gallery', component: GalleryComponent },
   { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
   { title: 'ADS | Policy', path: 'policy', component: PolicyComponent },
-
   {
     title: 'ADS |Admin', path: 'admin', canActivate: [AdminGuard], component: AdminComponent, 
     children: [
@@ -24,6 +23,7 @@ export const routes: Routes = [
       { title: 'Admin | Manage Users', path: 'users', component: UsersComponent },
     ],
   },
+
 
   { title: 'ADS | Not Found', path: '**', component: NotfoundComponent },
 ];

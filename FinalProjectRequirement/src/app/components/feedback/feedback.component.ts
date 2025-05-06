@@ -22,6 +22,14 @@ export class FeedBackComponent {
   isEditing = false;
   editingIndex: number | null = null;
 
+  constructor() {
+    // Load feedback records from localStorage on component initialization
+    const savedFeedback = localStorage.getItem('feedbackRecords');
+    if (savedFeedback) {
+      this.feedbackRecords = JSON.parse(savedFeedback);
+    }
+  }
+
   openModal() {
     this.isModalOpen = true;
     setTimeout(() => {
@@ -61,6 +69,9 @@ export class FeedBackComponent {
       this.feedbackRecords.unshift(feedback);
     }
 
+    // Save feedback records to localStorage
+    localStorage.setItem('feedbackRecords', JSON.stringify(this.feedbackRecords));
+
     this.openModal();
     this.resetForm();
   }
@@ -78,19 +89,26 @@ export class FeedBackComponent {
   selectEmoji(emoji: string) {
     this.selectedEmoji = emoji;
   }
+ // Start editing a feedback record
+ editFeedback(record: any, index: number) {
+  this.isEditing = true;
+  this.editingIndex = index;
+}
 
-  editFeedback(record: any, index: number) {
-    this.name = record.name;
-    this.email = record.email;
-    this.message = record.message;
-    this.selectedEmoji = record.feeling;
-  
-    // Optional: remove the original so user re-submits edited one
-    this.feedbackRecords.splice(index, 1);
-  }
-  
-  deleteFeedback(index: number) {
-    this.feedbackRecords.splice(index, 1);
-  }
-  
+// Update the edited feedback
+updateFeedback(index: number) {
+  this.isEditing = false;
+  this.editingIndex = null;
+  this.feedbackRecords[index].dateTime = new Date().toLocaleString(); // Update the timestamp
+}
+
+// Cancel editing
+cancelEdit() {
+  this.isEditing = false;
+  this.editingIndex = null;
+}
+
+deleteFeedback(index: number) {
+  this.feedbackRecords.splice(index, 1);
+}
 }

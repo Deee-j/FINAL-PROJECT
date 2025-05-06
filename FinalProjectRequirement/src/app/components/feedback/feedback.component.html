@@ -1,20 +1,13 @@
-<!-- Modal -->
-<div 
-  *ngIf="isModalOpen" 
-  style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-align: center;"
->
-  <h3 style="margin: 0 0 10px;">Thank You, {{ name }}!</h3>
+<!-- Modal --> 
+<div *ngIf="isModalOpen" class="modal">
+  <h3>Thank You, {{ name }}!</h3>
   <p>Your feedback has been submitted successfully.</p>
-  <button 
-    (click)="closeModal()" 
-    style="margin-top: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    Close
-  </button>
+  <button (click)="closeModal()">Close</button>
 </div>
 
 <!-- Feedback Form Centered -->
-<div style="display: flex; justify-content: center; margin-bottom: 60px;">
-  <div class="feedback-card" style="width: 500px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+<div class="feedback-container">
+  <div class="feedback-card">
     <div class="card-header">
       <h3>Feedback Form</h3>
       <p>We value your feedback. Please share your thoughts with us!</p>
@@ -22,123 +15,130 @@
 
     <div class="form-container">
       <!-- Error Message -->
-      <div *ngIf="errorMessage" style="color: red; margin-bottom: 15px; text-align: center;">
+      <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
       <form (submit)="submitFeedback(); $event.preventDefault();">
         <!-- Name -->
-        <div class="form-group" style="margin-bottom: 15px;">
+        <div class="form-group">
           <label for="name">Name:</label>
-          <input 
-            type="text" 
-            id="name" 
-            [(ngModel)]="name" 
-            name="name" 
-            placeholder="Enter your name"
-            required
-            style="width: 100%; padding: 8px; margin-top: 5px;"
-          />
+          <input type="text" id="name" [(ngModel)]="name" name="name" placeholder="Enter your name" required />
+          <div *ngIf="name" class="preview-text">Your Name: <strong>{{ name }}</strong></div>
+        </div>
 
-        <div *ngIf="name" style="margin-top: 10px; color: #555;">
-          Your Name: <strong>{{ name }}</strong>
-        </div>
-      </div>
         <!-- Email -->
-        <div class="form-group" style="margin-bottom: 15px;">
+        <div class="form-group">
           <label for="email">Email:</label>
-          <input 
-            type="email" 
-            id="email" 
-            [(ngModel)]="email" 
-            name="email" 
-            placeholder="Enter your email"
-            required
-            style="width: 100%; padding: 8px; margin-top: 5px;"
-          />
-        </div>
-        <div *ngIf="email" style="margin-top: 10px; color: #555;">
-          Your Email: <strong>{{ email }}</strong>
+          <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required />
+          <div *ngIf="email" class="preview-text">Your Email: <strong>{{ email }}</strong></div>
         </div>
 
         <!-- Message -->
-        <div class="form-group" style="margin-bottom: 15px;">
+        <div class="form-group">
           <label for="message">Message:</label>
-          <textarea 
-            id="message" 
-            [(ngModel)]="message" 
-            name="message" 
-            rows="4" 
-            placeholder="Share your feedback"
-            required
-            style="width: 100%; padding: 8px; margin-top: 5px;"
-          ></textarea>
+          <textarea id="message" [(ngModel)]="message" name="message" rows="4" placeholder="Share your feedback" required></textarea>
         </div>
 
         <!-- Emoji Selector -->
-        <div class="form-group" style="margin-bottom: 20px; text-align: center;">
-          <label style="display: block; margin-bottom: 8px;">How do you feel?</label>
-          <div style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
-            <span 
-              (click)="selectEmoji('😊')" 
-              [style.opacity]="selectedEmoji === '😊' ? '1' : '0.5'" 
-              style="cursor: pointer;">
-              😊
-            </span>
-            <span 
-              (click)="selectEmoji('😐')" 
-              [style.opacity]="selectedEmoji === '😐' ? '1' : '0.5'" 
-              style="cursor: pointer;">
-              😐
-            </span>
-            <span 
-              (click)="selectEmoji('😞')" 
-              [style.opacity]="selectedEmoji === '😞' ? '1' : '0.5'" 
-              style="cursor: pointer;">
-              😞
-            </span>
+        <div class="form-group emoji-selector">
+          <label>How do you feel?</label>
+          <div class="emoji-options">
+            <span (click)="selectEmoji('😊')" [class.selected]="selectedEmoji === '😊'">😊</span>
+            <span (click)="selectEmoji('😐')" [class.selected]="selectedEmoji === '😐'">😐</span>
+            <span (click)="selectEmoji('😞')" [class.selected]="selectedEmoji === '😞'">😞</span>
           </div>
-          <div *ngIf="selectedEmoji" style="margin-top: 10px; font-size: 18px;">
-            Selected: {{ selectedEmoji }}
-          </div>
+          <div *ngIf="selectedEmoji" class="selected-emoji">Selected: {{ selectedEmoji }}</div>
         </div>
 
         <!-- Form Actions -->
-        <div class="form-actions" style="display: flex; justify-content: space-between;">
-          <!-- Reset -->
-          <button 
-            type="button" 
-            (click)="resetForm()" 
-            style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Reset
-          </button>
-
-          <!-- Submit -->
-          <button 
-            type="submit" 
-            style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Submit
-          </button>
+        <div class="form-actions">
+          <button type="button" (click)="resetForm()" class="reset-btn">Reset</button>
+          <button type="submit" class="submit-btn">Submit</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-<div *ngIf="feedbackRecords.length > 0" style="margin-top: 30px;">
+<div *ngIf="feedbackRecords.length > 0" class="feedback-records">
   <h3>Feedback Records:</h3>
-  <div 
-    *ngFor="let record of feedbackRecords; let i = index" 
-    class="feedback-record"
-  >
-    <p><strong>Name:</strong> {{ record.name }}</p>
-    <p><strong>Email:</strong> {{ record.email }}</p>
-    <p><strong>Message:</strong> {{ record.message }}</p>
-    <p><strong>Feeling:</strong> {{ record.feeling }}</p>
-    <p><strong>Submitted at:</strong> {{ record.dateTime }}</p>
+  <div *ngFor="let record of feedbackRecords; let i = index" class="feedback-record">
+    
+    <!-- Edit Mode (show editable fields) -->
+    <div *ngIf="isEditing && editingIndex === i; else viewMode">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input 
+          type="text" 
+          id="name" 
+          [(ngModel)]="record.name" 
+          name="name" 
+          placeholder="Enter your name" 
+          required
+          style="width: 100%; padding: 8px; margin-top: 5px;"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="record.email" 
+          name="email" 
+          placeholder="Enter your email" 
+          required
+          style="width: 100%; padding: 8px; margin-top: 5px;"
+        />
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea 
+          id="message" 
+          [(ngModel)]="record.message" 
+          name="message" 
+          rows="4" 
+          placeholder="Share your feedback" 
+          required
+          style="width: 100%; padding: 8px; margin-top: 5px;"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label>Feeling:</label>
+        <div style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
+          <span 
+            (click)="record.feeling = '😊'" 
+            [style.opacity]="record.feeling === '😊' ? '1' : '0.5'" 
+            style="cursor: pointer;">😊</span>
+          <span 
+            (click)="record.feeling = '😐'" 
+            [style.opacity]="record.feeling === '😐' ? '1' : '0.5'" 
+            style="cursor: pointer;">😐</span>
+          <span 
+            (click)="record.feeling = '😞'" 
+            [style.opacity]="record.feeling === '😞' ? '1' : '0.5'" 
+            style="cursor: pointer;">😞</span>
+        </div>
+      </div>
+      
+      <div class="action-buttons">
+        <button (click)="updateFeedback(i)" class="edit-btn">Save</button>
+        <button (click)="cancelEdit()" class="delete-btn">Cancel</button>
+      </div>
+    </div>
 
-    <!-- Action Buttons per record -->
-    <button (click)="editFeedback(record, i)">Edit</button>
-    <button (click)="deleteFeedback(i)">Delete</button>
+    <!-- View Mode (display feedback record details) -->
+    <ng-template #viewMode>
+      <p><strong>Name:</strong> {{ record.name }}</p>
+      <p><strong>Email:</strong> {{ record.email }}</p>
+      <p><strong>Message:</strong> {{ record.message }}</p>
+      <p><strong>Feeling:</strong> {{ record.feeling }}</p>
+      <p><strong>Submitted at:</strong> {{ record.dateTime }}</p>
+
+      <!-- Action Buttons per record -->
+      <div class="action-buttons">
+        <button (click)="editFeedback(record, i)" class="edit-btn">Edit</button>
+        <button (click)="deleteFeedback(i)" class="delete-btn">Delete</button>
+      </div>
+    </ng-template>
   </div>
 </div>

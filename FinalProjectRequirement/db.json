@@ -1,19 +1,14 @@
 {
     "feedbacks": [
-      {
+        {
+        "id": "1",
         "name": "John Doe",
         "email": "johndoe@example.com",
-        "message": "Great product, really enjoyed it!",
+        "message": "Great service!",
         "feeling": "😊",
-        "dateTime": "5/6/2025, 1:00:00 PM"
-      },
-      {
-        "name": "Jane Smith",
-        "email": "janesmith@example.com",
-        "message": "The service could be improved, but overall good experience.",
-        "feeling": "😐",
-        "dateTime": "5/6/2025, 2:15:00 PM"
+        "dateTime": "2025-05-06T12:34:56"
       }
+      
     ]
   }
   
