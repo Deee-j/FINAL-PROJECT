@@ -6,6 +6,7 @@ import { FeedBackComponent } from './components/feedback/feedback.component';
 import { AppRoutingModule } from './components/admin/admin.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '', component: FeedBackComponent },
   
@@ -22,6 +23,7 @@ const routes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),  // <-- Use RouterModule here
   ],
   providers: [],
