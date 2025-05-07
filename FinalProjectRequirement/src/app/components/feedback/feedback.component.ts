@@ -15,14 +15,26 @@ export class FeedBackComponent {
   email = '';
   message = '';
   selectedEmoji = '';
-  errorMessage = '';  // 🔴 Error message for incomplete input
+  errorMessage = '';
   feedbackRecords: any[] = [];
+
+  // For editing existing feedback
+  isEditing = false;
+  editingIndex: number | null = null;
+
+  constructor() {
+    // Load feedback records from localStorage on component initialization
+    const savedFeedback = localStorage.getItem('feedbackRecords');
+    if (savedFeedback) {
+      this.feedbackRecords = JSON.parse(savedFeedback);
+    }
+  }
 
   openModal() {
     this.isModalOpen = true;
     setTimeout(() => {
       this.closeModal();
-    }, 3000); // Auto-close modal after 3 seconds
+    }, 3000);
   }
 
   closeModal() {
@@ -30,13 +42,12 @@ export class FeedBackComponent {
   }
 
   submitFeedback() {
-    // 🔎 Check if any field is incomplete
     if (!this.name.trim() || !this.email.trim() || !this.message.trim() || !this.selectedEmoji) {
       this.errorMessage = '⚠️ Please complete all fields including how you feel.';
       return;
     }
 
-    this.errorMessage = '';  // ✅ Clear error if everything is valid
+    this.errorMessage = '';
 
     const currentDateTime = new Date().toLocaleString();
 
@@ -48,7 +59,18 @@ export class FeedBackComponent {
       dateTime: currentDateTime,
     };
 
-    this.feedbackRecords.unshift(feedback);
+    if (this.isEditing && this.editingIndex !== null) {
+      // Update existing record
+      this.feedbackRecords[this.editingIndex] = feedback;
+      this.isEditing = false;
+      this.editingIndex = null;
+    } else {
+      // Add new feedback
+      this.feedbackRecords.unshift(feedback);
+    }
+
+    // Save feedback records to localStorage
+    localStorage.setItem('feedbackRecords', JSON.stringify(this.feedbackRecords));
 
     this.openModal();
     this.resetForm();
@@ -59,10 +81,36 @@ export class FeedBackComponent {
     this.email = '';
     this.message = '';
     this.selectedEmoji = '';
-    this.errorMessage = '';  // Clear error on reset
+    this.errorMessage = '';
+    this.isEditing = false;
+    this.editingIndex = null;
   }
 
   selectEmoji(emoji: string) {
     this.selectedEmoji = emoji;
   }
+ // Start editing a feedback record
+ editFeedback(record: any, index: number) {
+  this.isEditing = true;
+  this.editingIndex = index;
+}
+
+// Update the edited feedback
+updateFeedback(index: number) {
+  this.isEditing = false;
+  this.editingIndex = null;
+  this.feedbackRecords[index].dateTime = new Date().toLocaleString(); // Update the timestamp
+}
+
+// Cancel editing
+cancelEdit() {
+  this.isEditing = false;
+  this.editingIndex = null;
+}
+
+deleteFeedback(index: number) {
+  this.feedbackRecords.splice(index, 1);
+  localStorage.setItem('feedbackRecords', JSON.stringify(this.feedbackRecords));
+}
+
 }

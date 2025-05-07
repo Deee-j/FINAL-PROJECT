@@ -35,7 +35,7 @@ export class AboutComponent {
 
   teamMembers = [
     {
-      name: 'DeeJay',
+      name: 'Dee Jay',
       role: 'CEO & Founder',
       age: 20,
       sex: 'Male',

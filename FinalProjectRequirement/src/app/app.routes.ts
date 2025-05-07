@@ -6,7 +6,6 @@ import { FeedBackComponent } from './components/feedback/feedback.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { UsersComponent } from './components/admin/users/users.component';
 import { AdminGuard } from './components/admin/admin.guard';
 import { PolicyComponent } from './components/footer/policy/policy.component';
 import { CopyrightComponent } from './components/footer/copyright/copyright.component';
@@ -17,15 +16,18 @@ export const routes: Routes = [
   { title: 'ADS | Gallery', path: 'gallery', component: GalleryComponent },
   { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
   { title: 'ADS | Policy', path: 'policy', component: PolicyComponent },
+<<<<<<< HEAD
   { title: 'ADS | Copyright', path: 'copyright', component: CopyrightComponent },
 
+=======
+>>>>>>> 98b5ee2887fc23e8bcb9be86e40c879c1801ef06
   {
     title: 'ADS |Admin', path: 'admin', canActivate: [AdminGuard], component: AdminComponent, 
     children: [
-      { title: 'Admin | Dashboard', path: 'dashboard', component: DashboardComponent },
-      { title: 'Admin | Manage Users', path: 'users', component: UsersComponent },
+      { title: 'Admin | Dashboard', path: 'dashboard', component: DashboardComponent }
     ],
   },
+
 
   { title: 'ADS | Not Found', path: '**', component: NotfoundComponent },
 ];

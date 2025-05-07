@@ -1,53 +1,69 @@
-<section class="text-center my-4">
-  <h1></h1>
-  <h1></h1>
-  <h2>Images</h2>
-  <p class="lead">Explore different aspects of Quality Education through these images that highlight classroom learning, teacher mentorship, digital access, and more!</p>
-</section>
-
 <!-- Search Bar -->
-<div class="container my-4">
-  <input type="text" [(ngModel)]="searchQuery" class="form-control" placeholder="Search for images or videos..." />
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    class="form-control"
+    placeholder="Search for images or videos..."
+    [ngClass]="{ 'highlight': searchQuery.length > 0 }"
+  />
 </div>
-
-<!-- Image Gallery -->
-<div class="container">
-  <div class="row">
-    <div *ngFor="let img of filteredImages" class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
-      <div class="card">
-        <!-- Background effect -->
-        <div class="bg"></div>
-        <!-- Blob animation -->
-        <div class="blob"></div>
-        <!-- Image content -->
-        <a [href]="img.src" data-featherlight="image">
-          <img [src]="img.src" [alt]="img.alt" class="card-img-top" style="height: 250px; object-fit: cover; width: 100%;"/>
-        </a>
-        <div class="card-body">
-          <h5 class="card-title">{{ img.title }}</h5>
-          <p class="card-text">{{ img.description }}</p>
+<h1></h1>
+<!-- Images Section -->
+<section class="image-section text-center my-5">
+  <h2 class="section-title">Images</h2>
+  <p class="lead">Explore different aspects of Quality Education through these images that highlight classroom learning, teacher mentorship, digital access, and more!</p>
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let img of filteredImages" class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+        <div class="card">
+          <a [href]="img.src" data-featherlight="image">
+            <img [src]="img.src" [alt]="img.alt" class="card-img-top" />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ img.title }}</h5>
+            <p class="card-text">{{ img.description }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- Video Gallery -->
-<section class="text-center my-4">
-  <h2>Videos</h2>
-  <p class="lead">Explore educational videos about quality education and its impact on communities worldwide.</p>
 </section>
 
-<div class="container d-flex justify-content-center">
-  <div class="row d-flex justify-content-center">
-    <div *ngFor="let video of filteredVideos" class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-      <div class="card" style="width: 25rem; text-align: center;">
-        <iframe [src]="video.embedUrl" width="100%" height="200px" style="border: none;"></iframe>
-        <div class="card-body">
-          <h5 class="card-title">{{ video.title }}</h5>
-          <p class="card-text">{{ video.description }}</p>
+<!-- Video Section -->
+<section class="video-section text-center my-5">
+  <h2 class="section-title">Videos</h2>
+  <p class="lead">Explore educational videos about quality education and its impact on communities worldwide.</p>
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let video of filteredVideos" class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+          <iframe [src]="video.embedUrl" width="100%" height="200px" style="border: none;"></iframe>
+          <div class="card-body">
+            <h5 class="card-title">{{ video.title }}</h5>
+            <p class="card-text">{{ video.description }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- Case Studies Section -->
+<section class="case-studies-section text-center my-5">
+  <h2 class="section-title">Case Studies</h2>
+  <p class="lead">Discover real-world examples of how quality education initiatives are making a difference.</p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div *ngFor="let cs of filteredCaseStudies" class="col-lg-6 col-md-8 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ cs.title }}</h5>
+            <p class="card-text">{{ cs.description }}</p>
+            <a [href]="cs.link" target="_blank" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

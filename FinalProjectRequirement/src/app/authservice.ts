@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   isAdmin(): boolean {
     console.log('AuthService.isAdmin() called - always returning false for demo');
-    return true;
+    return false; 
   }
 }
