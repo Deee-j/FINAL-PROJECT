@@ -16,11 +16,7 @@ export const routes: Routes = [
   { title: 'ADS | Gallery', path: 'gallery', component: GalleryComponent },
   { title: 'ADS | Feedback', path: 'feedback', component: FeedBackComponent },
   { title: 'ADS | Policy', path: 'policy', component: PolicyComponent },
-<<<<<<< HEAD
   { title: 'ADS | Copyright', path: 'copyright', component: CopyrightComponent },
-
-=======
->>>>>>> 98b5ee2887fc23e8bcb9be86e40c879c1801ef06
   {
     title: 'ADS |Admin', path: 'admin', canActivate: [AdminGuard], component: AdminComponent, 
     children: [
